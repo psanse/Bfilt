@@ -13,6 +13,8 @@ The Binary Constraint Satisfaction Problem (BCSP) solver based on a k-clique com
 
 The solver can be run as, e.g.,
 
+# THIS PAGE IS UNDER CONSTRUCTION
+
 <!---
 ./[exeNAME] GRID_MCLP_n100_m10000_d1_100_f1_1_s1.dat 2 600  6.25 10
 
