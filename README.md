@@ -1,4 +1,4 @@
-# BCSPasMCP
+# BCSP as K-CP
 
 This site contains accompanying material to the paper:
 
