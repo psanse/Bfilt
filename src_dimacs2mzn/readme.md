@@ -19,7 +19,7 @@ We provide a demonstration example in the example folder.
 
 To note:
 
-*  The converter requires that the graphs have the extension *.clq. It also requires the existence of the layer information (i.e. a declaration of the number and size of the original BCSP instance) with the extenson *.csp.
+*  The converter requires that the graphs have the extension *.clq. It also requires the existence of the layer information (i.e. a declaration of the number of variables and domain size of the original BCSP instance) with the extenson *.csp.
 
 * The bin folder provides a Linux binary (Ubuntu) and a python script minizinc_generator.py (which only works for a 'dim\_to\_mnz' binary). Use the python script as follows:
 
