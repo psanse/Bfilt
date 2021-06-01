@@ -1,5 +1,6 @@
-//basic dimacs and csp reader in C 
+//basic dimacs to MiniZinc translator 
 //date@: 21/04/21
+//dev@rleon, pss
 
 #include <stdlib.h>		//exit
 #include <string.h>
