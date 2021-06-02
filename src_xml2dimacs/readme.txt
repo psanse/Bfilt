@@ -5,4 +5,4 @@ An XML parser has been written in C++ and it is located at:
 
 https://github.com/xcsp3team/XCSP3-CPP-Parser
 
-It provides a collection of callback methods that helps processing benchmark files. The software xml2dimacs transforms XCSP3 files into a graph, it implements a set of callback functions that they are invoked after the corresponding tag is found. 
+It provides a collection of callback methods that helps processing benchmark files. The software xml2dimacs transforms XCSP3 files into a graph, it implements a set of callback functions that they are invoked after the corresponding tag is found in the file. 
