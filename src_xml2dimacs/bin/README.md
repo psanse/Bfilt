@@ -9,3 +9,7 @@ Uncompressing XML files:
 
 > Usasge: uncompress_files.py <path where files will be uncompressed recursively>
 
+  
+Generating graphs:
+  
+> Usage: graphs_gen.py <path where XML files are located and graphs will be generated recursively>
