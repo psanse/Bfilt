@@ -19,7 +19,8 @@ The instructions are as follows:
 2. Execute the command line:
 
 > ./xml2dimacs <filename in XCSP3 format, extension *.xml>
-> The output are the files: <filename.clq> and <filename.csp>.
+
+The output are the files: <filename.clq> and <filename.csp>.
 
 We provide a demonstration example in the example folder.
 
