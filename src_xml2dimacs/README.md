@@ -1,5 +1,5 @@
 
-** Dimacs model generator **
+**Dimacs model generator**
 
 The folder provides the conversion algorithm from an XML file to a Dimacs graph format, assuming that the graph format corresponds to a Binary Constraint Satisfaction Problem instance obtained as explained in the paper:
 A new branch-and-filter exact algorithm for binary constraint satisfaction problems
@@ -17,7 +17,7 @@ The instructions are as follows:
 
 We provide a demonstration example in the example folder.
 To note:
-    • The converter requires that the graphs have the extension (.xml). XCSP3 file collections are packed compressed using Lempel–Ziv–Markov chain algorithm (LZMA), they need to be uncompressed before.
-    • The bin folder provides a Linux binary (Debian) and a python script dimacs_generator.py (which only works for a 'xml2dimacs' binary). Use the python script as follows:
->dimacs_generator.py <folder>
+* The converter requires that the graphs have the extension (.xml). XCSP3 file collections are packed compressed using Lempel–Ziv–Markov chain algorithm (LZMA), they need to be uncompressed before.
+* The bin folder provides a Linux binary (Debian) and a python script dimacs\_generator.py (which only works for a 'xml2dimacs' binary). Use the python script as follows:
+> dimacs\_generator.py <folder>
 and it will recursively produce dimacs graphs for all subdirectories.
