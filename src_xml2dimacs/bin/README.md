@@ -7,5 +7,5 @@ xml2dimacs is a binary created using Debian 10 (buster)
 
 Uncompressing XML files:
 
-> Usasge: uncompress_files.py 
+> Usasge: uncompress_files.py <path where files will be uncompressed recursively>
 
