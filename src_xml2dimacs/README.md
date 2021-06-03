@@ -13,9 +13,11 @@ The pre-requisites to compile this program are:
 
 The instructions are as follows:
 
-1. In order to compile the program, it is necessary to use an utility like cmake, it is not practical try to write all the needed options in the command line. The file:
-> https://github.com/xThe instructions are as follows:csp3team/XCSP3-CPP-Parser/blob/master/CmakeLists.txt shows how to create the configuration file.
+1. In order to compile the program, it is necessary to use an utility like cmake, it is not practical try to write all the needed options in the command line. The file example:
+> https://github.com/xcsp3team/XCSP3-CPP-Parser/blob/master/CmakeLists.txt shows how to create the configuration file.
+
 2. Execute the command line:
+
 > ./xml2dimacs <filename in XCSP3 format, extension *.xml>
 > The output are the files: <filename.clq> and <filename.csp>.
 
@@ -24,6 +26,11 @@ We provide a demonstration example in the example folder.
 To note:
 
 * The converter requires that the graphs have the extension (.xml). XCSP3 file collections are packed compressed using Lempel–Ziv–Markov chain algorithm (LZMA), they need to be uncompressed before. In the bin folder it is located the script uncompress_files.py, it uncompress files recursively.
-* The bin folder provides also a Linux binary (Debian) and a python script graph\_gen.py (which only works for a 'xml2dimacs' binary). Use the python script as follows:
+
+> uncompress\_files.py \<folder>
+
+* AT the bin folder there is a python script, graph\_gen.py (which only works for a 'xml2dimacs' binary) and it will recursively produce dimacs graphs for all subdirectories. Use the python script as follows:
+
 > graph\_gen.py \<folder>
-and it will recursively produce dimacs graphs for all subdirectories.
+
+
