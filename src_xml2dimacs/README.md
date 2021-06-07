@@ -1,5 +1,5 @@
 
-**Dimacs graph generator**
+# Dimacs graph generator
 
 The folder provides the conversion algorithm from an XML file to a Dimacs graph format, assuming that the graph format corresponds to a Binary Constraint Satisfaction Problem instance obtained as explained in the paper:
 
