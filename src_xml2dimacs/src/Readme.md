@@ -1,5 +1,5 @@
 
-** src folder **
+**src folder**
 
 
 This folder contains the source code of the program that generates a dimacs graph from an XML file in XCSP3 format.
