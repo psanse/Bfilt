@@ -2,10 +2,10 @@
 # Source folder
 
 
-This folder contains the source code of the program that generates a dimacs graph from an XML file in XCSP3 format.
+This folder contains the source code xml2dimacs.cc for the translator from BCSP instances in XCSP3 format to K-CP instances in DIMACS format.
 
-It also contains an example of Cmake configuration file. It assumes that the source program is located in a directory called xml2dimacs at the route of the XCSP3 C++ parser folder and the source file has the name xml2dimacs.cc.
+It requires CMake. The CMakeLists.txt configuration file assumes that the source program is located in a directory called *xml2dimacs* at the route of the XCSP3 C++ parser folder.
 
 It is advisable to create a build directory and execute the cmake command from this directory.
 
-A copy of the file XCSP3PrintCallbacks.h has to be on the xml2dimacs directory.
+**IMPORTANT**: A copy of the file *XCSP3PrintCallbacks.h* has to be on the *xml2dimacs* directory.
