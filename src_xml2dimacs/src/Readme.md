@@ -4,7 +4,7 @@
 
 This folder contains the source code xml2dimacs.cc for the translator from BCSP instances in XCSP3 format to K-CP instances in DIMACS format.
 
-It requires CMake. The CMakeLists.txt configuration file assumes that the source program is located in a directory called *xml2dimacs* at the route of the XCSP3 C++ parser folder.
+Compilation requires CMake. The CMakeLists.txt configuration file assumes that the source program is located in a directory called *xml2dimacs* at the route of the XCSP3 C++ parser folder.
 
 It is advisable to create a build directory and execute the cmake command from this directory.
 
