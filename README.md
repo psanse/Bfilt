@@ -1,4 +1,4 @@
-# BCSP as K-CP
+# Bfilt
 
 This site contains the instances in XCSP3 format employed in the following paper:
 
