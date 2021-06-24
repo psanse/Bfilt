@@ -1,4 +1,4 @@
-# Bfilt dataset and converter
+# Bfilt dataset and converters
 
 This site contains the instances in XCSP3 format employed in the following paper:
 
