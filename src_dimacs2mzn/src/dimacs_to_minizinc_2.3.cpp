@@ -1,12 +1,11 @@
-//basic dimacs to MiniZinc translator 
+//basic dimacs microstructure graph to MiniZinc translator 
 //date@: 21/04/21
 //dev@rleon, pss
 
-#include <stdlib.h>		//exit
-#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <vector>
-#include <stdio.h>
 #include <iostream>
 #include <climits>
 #include <map>
@@ -33,6 +32,7 @@ typedef struct graph_t GRAPH;
 GTYPE** allocate_gt (int n);
 void free_gt(GTYPE** gt, int n);
 void print_gt(const GTYPE**, int n);
+void mi_print_gt(GRAPH* pg);
 
 
 //*************
@@ -75,6 +75,7 @@ void write_mzn(FILE *fileMzn,string text);
 void data_mzn(int *VAR,int nV,FILE *fileMzn);
 int  count(string var1,string var2,GRAPH *g);
 void tuples_writer(string var1,string var2,int numero_unos,FILE *fileMzn,GRAPH *g);
+void tuples_writer_not(string var1,string var2,int numero_unos,FILE *fileMzn,GRAPH *g);
 void create_mnz(FILE *fileMzn,GRAPH *g);
 void close_mzn(FILE *fileMzn);
 
@@ -114,6 +115,8 @@ int main(int argc, char **argv){
 	//**********************
 
 	GRAPH* g;
+	
+
 	g = gopen(fileName);
 	
 	if (g == NULL) {
@@ -131,6 +134,11 @@ int main(int argc, char **argv){
 	cout << "Opening file: " << fileName << endl;
 	int nV=0;
 	int* VAR = read_csp(fileName, nV);				//VAR-domain info, nV-number of variables
+
+	// cout <<"============" << endl;
+	// info(g);
+	// mi_print_gt(g);
+	// cout <<"============" << endl;
 
 	if (VAR == NULL) {
 		cout << "error when reading the csp file: " << fileName << " ... exiting" << endl;
@@ -168,7 +176,7 @@ int main(int argc, char **argv){
 
 
 //*********************
-// Executes Writing onto Minizinc file
+// Outputs Minizinc file
 //*********************
 
 void write_mzn(FILE *fileMzn,string text){
@@ -177,8 +185,8 @@ void write_mzn(FILE *fileMzn,string text){
 
 
 //*********************
-// This function creates variables data structure
-// onto the Minizinc file
+// Creates the variables data structure
+// in the Minizinc file
 //*********************
 
 void data_mzn(int *VAR,int numVar,FILE *fileMzn){
@@ -203,20 +211,36 @@ void data_mzn(int *VAR,int numVar,FILE *fileMzn){
 
 
 //*********************
-// This is the root function for
-// MiniZinc file generation
+// Driver- MiniZinc file generation
 //*********************
 
 void create_mnz(FILE *fileMzn,GRAPH *g)
 	{
-		int numero_unos = 0;
-				
+		int nOnes = 0;
+		
 		if (lista_variables.size() > 1){
 			for (int i=0; i< lista_variables.size()-1;i++){
 				for (int j = i+1; j<lista_variables.size();j++){
-					numero_unos = count(lista_variables[i],lista_variables[j],g);
-					if (numero_unos != 0)
-						tuples_writer(lista_variables[i],lista_variables[j],numero_unos,fileMzn,g);
+					int maxVAL = rango_variable[lista_variables[i]] * rango_variable[lista_variables[j]];
+					nOnes = count(lista_variables[i],lista_variables[j],g);
+					if (nOnes == maxVAL) { continue; }		//all ones- nothing to do
+					if (nOnes == 0){
+						tuples_writer_not(lista_variables[i],lista_variables[j], nOnes,fileMzn,g);
+						cout << " Found trivially UNSAT" << endl;
+						return ;			//early exit-proven UNSAT
+					}
+					else {
+						//A) produces less compact (minizinc) models but the conversion to flatzinc is easier (DEFAULT)
+						tuples_writer(lista_variables[i], lista_variables[j], nOnes, fileMzn, g);
+
+						//B) produces more compact models but the conversion to flatzinc is more difficult apparently!
+						/*if (2 * numero_unos - maxVAL > 0) {
+							tuples_writer_not(lista_variables[i], lista_variables[j], nOnes, fileMzn, g);
+						}
+						else {
+							tuples_writer(lista_variables[i], lista_variables[j], nOnes, fileMzn, g);
+						}*/
+					}					
 				}
 			}
 		}
@@ -227,29 +251,26 @@ void create_mnz(FILE *fileMzn,GRAPH *g)
 
 
 //*********************
-// This  function counts the number of "1's"
+// Counts the number of "1's" (valid tuples) 
 // between two variables
 //*********************
 
 int count(string var1,string var2, GRAPH *g){
-	int cuenta = 0;	
+	int nOnes = 0;	
 		
 		for (int i = base_variable[var1];i< base_variable[var1] + rango_variable[var1];i++){
 			for(int j= base_variable[var2];j < base_variable[var2] + rango_variable[var2];j++){
 				if (g->adj[i][j] == 1)
-					cuenta++;			
+					nOnes++;
 			}
-		}
-
-		if (cuenta == (rango_variable[var1] * rango_variable[var2]) || cuenta == 0)
-			return 0;
-		else 
-			return cuenta;
+		}	
+			
+		return nOnes;
 }
 
 
 //*********************
-// Writes the MiniZinc table onto the output file
+// Outputs the table constraint to the Minizinc file
 //*********************
 
 void tuples_writer(string var1,string var2,int numero_unos,FILE *fileMzn,GRAPH *g){
@@ -280,9 +301,44 @@ void tuples_writer(string var1,string var2,int numero_unos,FILE *fileMzn,GRAPH *
 		write_mzn(fileMzn,"]);\n");
 	}
 
+//*********************
+// Outputs the NOT table constraint to the Minizinc file
+//*********************
+
+void tuples_writer_not(string var1,string var2,int numero_unos,FILE *fileMzn,GRAPH *g){
+
+		int numero_ceros = (rango_variable[var1]*rango_variable[var2])-numero_unos;
+
+				
+		string aux = "\nconstraint not table([" + var1 + "," + var2 + "],";
+		string auxArray,auxTabla;
+		
+		tabla_actual = "table_" + to_string(indice_tabla);
+		indice_tabla++;
+
+		aux += tabla_actual + ");\n";
+		write_mzn(fileMzn,aux);
+
+		// Table declaration: MiniZinc has to entries for each table
+		auxArray = "\narray[1.." + to_string(numero_ceros) + ", 1..2] of int: " + tabla_actual + ";\n" ;
+		write_mzn(fileMzn,auxArray);
+
+		auxTabla = tabla_actual + " = array2d(1.."+ to_string(numero_ceros) + ", 1..2, [\n";
+		write_mzn(fileMzn,auxTabla);
+
+		for (int i=0; i < rango_variable[var1];i++){
+				for (int j = 0; j < rango_variable[var2];j++){
+					int indice1 = base_variable[var1]+i;
+					int indice2 = base_variable[var2]+j;	
+					if (g->adj[indice1][indice2] == 0)
+						write_mzn(fileMzn,to_string(i)+","+to_string(j)+",\n");
+				}
+		}
+		write_mzn(fileMzn,"]);\n");
+	}
 
 //*********************
-// It closes MiniZinc file
+// closes MiniZinc file
 //*********************
 
 void close_mzn(FILE *fileMzn){
@@ -349,12 +405,24 @@ void free_gt(GTYPE ** gt, int n)
 // Prints on Terminal the graph
 //******************
 
-void print_gt(const GTYPE **gt, int n)
+void print_gt(GTYPE **gt, int n)
 {
 	int i, j;
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < n; j++) {
 			printf("%f ", gt[i][j]);
+		}
+		puts("");
+	}
+
+}
+
+void mi_print_gt(GRAPH * pg)
+{
+	int i, j;
+	for (i = 0; i < pg->n; i++) {
+		for (j = 0; j < pg->n; j++) {
+			printf("%d ", pg->adj[i][j]);
 		}
 		puts("");
 	}
@@ -488,6 +556,8 @@ int* read_csp(const char * filename, int& n)
 // RETURN:
 // Array of sizes taken from the *.csp file or NULL if error
 
+	// Para matrices todo ceros
+
 	int nElem=0, sV=0 ;
 	char line[MAX_LINE_SIZE + 1];
 	int* VAR = NULL;
@@ -516,19 +586,20 @@ int* read_csp(const char * filename, int& n)
 		fscanf(fin, "%*s%*s%d", &sV);
 		VAR[i] = sV;
 	}
+	
 	return VAR;
 }
 
 
 //******************
-// It counts the number of edges of the graph
+// Counts the number of edges of the graph
 //******************
 
 int number_of_edges(const GRAPH *pg)
 {
-	int i, j, nEdges = 0;
-	for (i = 0; i < pg->n - 1; i++) {
-		for (j = i+1; j < pg->n; j++) {
+	int nEdges = 0;
+	for (int i = 0; i < pg->n - 1; i++) {
+		for (int j = i+1; j < pg->n; j++) {
 			if (pg->adj[i][j] == 1) {
 				nEdges++;
 			}
