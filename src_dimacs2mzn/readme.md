@@ -7,7 +7,7 @@ by Pablo San Segundo, Fabio Furini and Rafael León. European Journal of Operati
 
 The instructions are as follows:  
 
-1.  Compile the file 'dimacs_to_minizinc_0.2.cpp' in the src folder (tested in Linux 16.04.7 and Windows 10- c++11 flag). Name the binary preferably 'dim_to_mnz' (see later).
+1.  Compile the file 'dimacs_to_minizinc_2.3.cpp' in the src folder (tested in Linux 16.04.7 and Windows 10- c++11 flag). Name the binary preferably 'dim_to_mnz' (see later).
 2.  Execute the command line:
 
 
