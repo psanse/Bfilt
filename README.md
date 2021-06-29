@@ -7,8 +7,8 @@ by Pablo San Segundo, Fabio Furini and Rafael León. European Journal of Operati
 
 http://www.optimization-online.org/DB_HTML/2020/12/8179.html
 
-In addition, the converter from XCSP3  to Dimacs format and the converter from Dimacs format to MiniZinc format is provided. Detailed instructions for use are provided inside the corresponding folders.
+In addition, the converter from XCSP3  to Dimacs format and the converter from DIMACS format to MiniZinc format is provided. Detailed instructions for use are provided inside the corresponding folders.
 
 This software is for academic purposes only, see also the file LICENSE  provided.
 
-Finally, two complete families of instances in Dimacs format (part of the dataset of the mentioned paper) are also provided. The remaining families are not available owing to  space requirements, but may be obtained using the corresponding converters.
+Finally, two complete families of instances in DIMACS format (part of the dataset of the mentioned paper) are also provided. The remaining families are not available owing to  space requirements, but may be obtained using the corresponding converters.
