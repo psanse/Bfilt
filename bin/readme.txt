@@ -33,7 +33,7 @@ v 2 3
 v 3 2
 v 4 3
 
-indicating the order of the domains for each value.
+indicating the order of the domains for each variable (layer in the graph).
 
 The DIMACS graph (toy-paper.clq) indicates the compatibility between two (variable, value) pairs.
 The first few lines are:
@@ -64,18 +64,18 @@ ouptuts the following information in the console:
 
 	  0 3 6 8  [4] 
 
-The BCSP is SATISFIABLE, omega:4 is the clique number of the microstructure graph, t_parse is the parsing time, t_preproc is the preprocessing time and t_search is the time spent on the NP-complete search procedure.
+The BCSP is SATISFIABLE, omega:4 is the clique number of the microstructure graph, no values were fixed during preprocessing,  t_parse is the parsing time, t_preproc is the preprocessing time and t_search is the time spent on the NP-complete search procedure.
 Finally, the solution:
 
 0 3 6 8  [4]
 
 indicates the vertices that form the 4-clique, each one associated to a layer (variable in the BCSP) in increasing order. From the csp.file, given the order of each variable domain:
-x1 / layer 1: [0]-first value
-x2 / layer 2: [3]-first value
-x3 / layer 3: [6]-first value
-x4 / layer 4: [8]-first value
+x1 / layer 1: [0]-first value...x1[1]
+x2 / layer 2: [3]-first value...x2[1]
+x3 / layer 3: [6]-first value...x3[5]
+x4 / layer 4: [8]-first value...x4[1]
 
-The actual values of the variables are not available directly from the graph encoding, and have to be taken from the original BCSP instance in XCSP3 format.
+The actual values of the variables (in brackets) are not available directly from the graph encoding, and have to be taken from the original BCSP instance in XCSP3 format.
 
 
 
