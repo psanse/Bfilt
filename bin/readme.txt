@@ -28,13 +28,13 @@ The folder includes the files toy_paper.clq and toy_paper.csp (and some more ins
 
 The toy.csp file is therefore:
 x 4
-v 1 3
+v 1 3º
 v 2 3
 v 3 2
 v 4 3
 
 The first line x <NUM> indicates the number of layers, also the number of variables in the BCSP (in this case 4).
-The remaining lines, v <x> <y> indicate the size of the domains for each variable (layer in the graph), i.e.  v 1 3 reads that the first variable (x1 in the example) has 3 values.
+The remaining lines, v <x> <y> indicate the size of the domains for each variable (layer in the graph), i.e.,  v 1 3 reads that the first variable (x1 in the example) has 3 values.
 
 The DIMACS graph (toy-paper.clq) indicates the compatibility between two (variable, value) pairs.
 The first few lines are:
@@ -76,7 +76,7 @@ x2 / layer 2: [3]-first value...x2[1]
 x3 / layer 3: [6]-first value...x3[5]
 x4 / layer 4: [8]-first value...x4[1]
 
-The actual values of the variables (in brackets) are not available directly from the graph encoding, and have to be taken from the original BCSP instance in XCSP3 format.
+The actual values of the variables (in brackets, at the end of each line) are not available directly from the graph encoding, and have to be taken from the original BCSP instance in XCSP3 format.
 
 
 
