@@ -2,7 +2,7 @@
 
 This site contains the dataset of BCSP instances in XCSP3 format employed for testing in the following paper:
 
-> A new branch-and-filter exact algorithm for binary constraint satisfaction problems  
+>* A new branch-and-filter exact algorithm for binary constraint satisfaction problems * 
 by Pablo San Segundo, Fabio Furini and Rafael León. European Journal of Operational Research, 2021 (https://doi.org/10.1016/j.ejor.2021.09.014)
 
 In addition, the converter from XCSP3 to DIMACS format and the converter from DIMACS to MiniZinc format is provided. Detailed instructions for use are included inside the corresponding folders.
