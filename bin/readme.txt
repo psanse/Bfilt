@@ -28,7 +28,7 @@ The folder includes the files toy_paper.clq and toy_paper.csp (and some more ins
 
 The toy.csp file is therefore:
 x 4
-v 1 3º
+v 1 3
 v 2 3
 v 3 2
 v 4 3
