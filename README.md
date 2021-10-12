@@ -13,4 +13,4 @@ This software is for academic purposes only, see also the file LICENSE  provided
 
 Two complete families of instances in DIMACS format (part of the dataset of the mentioned paper) are also provided. The remaining families are not available owing to  space requirements, but may be obtained using the corresponding converters.
 
-Finally, a Linux binary is provided in the *bin* folder (instructions for use are inside).
+Finally, a Linux binary is provided in the *bin* folder (instructions for use are inside), with a few sample instances.
