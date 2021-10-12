@@ -3,7 +3,7 @@
 This site contains the instances in XCSP3 format employed in the following paper:
 
 > A new branch-and-filter exact algorithm for binary constraint satisfaction problems  
-by Pablo San Segundo, Fabio Furini and Rafael León. European Journal of Operational Research, (under review 2021).
+by Pablo San Segundo, Fabio Furini and Rafael León. European Journal of Operational Research, 2021 (https://doi.org/10.1016/j.ejor.2021.09.014)
 
 http://www.optimization-online.org/DB_HTML/2020/12/8179.html
 
