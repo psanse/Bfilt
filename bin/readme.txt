@@ -4,9 +4,9 @@ Date of release@09/10/2021
 Compiled with Ubuntu 16.04.7 LTS
 
 %%%%%%%%%%%%
-%
-% Instructions
-%
+%%
+%% INSTRUCTIONS
+%%
 %%%%%%%%%%%
 
 Run the binary with the name of the graph (in DIMACS format, <filename>.clq) and time limit (in seconds).
@@ -24,7 +24,7 @@ Example:
 %%%%%%%%%%%%%%%%%%
 
 
-The folder includes the files toy_paper.clq and toy_paper.csp which contain the reduction of a BCSP toy example to a k-CLP. The example is described in Figure 1 of the reference paper, and contains 4 variables with domains x1={1, 3, 5}, x2={1, 2, 3}, x3={5, 6} and x4={1, 2, 3} respecively.
+The folder includes the files toy_paper.clq and toy_paper.csp (and some more instances from the RB2 family) that encode the reduction of a BCSP toy example to a k-CLP. The example is described in Figure 1 of the reference paper (see main page), and contains 4 variables with domains x1={1, 3, 5}, x2={1, 2, 3}, x3={5, 6} and x4={1, 2, 3} respecively.
 
 The toy.csp file is therefore:
 x 4
@@ -33,7 +33,8 @@ v 2 3
 v 3 2
 v 4 3
 
-indicating the order of the domains for each variable (layer in the graph).
+The first line x <NUM> indicates the number of layers, also the number of variables in the BCSP (in this case 4).
+The remaining lines, v <x> <y> indicate the size of the domains for each variable (layer in the graph), i.e.  v 1 3 reads that the first variable (x1 in the example) has 3 values.
 
 The DIMACS graph (toy-paper.clq) indicates the compatibility between two (variable, value) pairs.
 The first few lines are:
