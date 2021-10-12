@@ -24,7 +24,7 @@ Example:
 %%%%%%%%%%%%%%%%%%
 
 
-The folder includes the files toy_paper.clq and toy_paper.csp (and some more instances from the RB2 family) that encode the reduction of a BCSP toy example to a k-CLP. The example is described in Figure 1 of the reference paper (see main page), and contains 4 variables with domains x1={1, 3, 5}, x2={1, 2, 3}, x3={5, 6} and x4={1, 2, 3} respecively.
+The folder includes the files toy_paper.clq and toy_paper.csp (and some more instances from the RB2 and B families) that encode the reduction of a BCSP toy example to a k-CLP. The example is described in Figure 1 of the reference paper (see main page), and contains 4 variables with domains x1={1, 3, 5}, x2={1, 2, 3}, x3={5, 6} and x4={1, 2, 3} respecively.
 
 The toy.csp file is therefore:
 x 4
